@@ -2,8 +2,7 @@
     height: 50px;
     width: 100vw;
     background-color: #999999;
-    display: block;
-    
+    display: flex;
     justify-content: center;
     align-items: center;
     position: fixed;
