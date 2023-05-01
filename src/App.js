@@ -11,9 +11,9 @@ function App () {
     <BrowserRouter>
     <Routes>
       <Route path="/" element={<Home />} />
-      <Route path="/gameOne" element={<WordColour />} />
-      <Route path="/gameTwo" element={<Frogger />} />
-      <Route path="/gameThree" element={<FindAWord />} />
+      <Route path="/wordColour" element={<WordColour />} />
+      <Route path="/frogger" element={<Frogger />} />
+      <Route path="/find-a-word" element={<FindAWord />} />
     </Routes>
   </BrowserRouter>
     </>
