@@ -4,7 +4,7 @@ const Footer = () => {
   return (
     <div className={classes.footer}>
       <div>
-        Footer
+      Anurag
       </div>
     </div>
   )
