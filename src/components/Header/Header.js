@@ -29,16 +29,16 @@ useEffect(() => {
            {screenWidth.width > 800 ? 'Home' : 'H'} 
           </NavLink>
           <span className={classes.divider}>|</span>
-          <NavLink to="/gameOne" className={classes.action} >
-          {screenWidth.width > 800 ? 'GameOne' : 'O'} 
+          <NavLink to="/wordColour" className={classes.action} >
+          {screenWidth.width > 800 ? 'Word Colour' : 'W'} 
           </NavLink>
           <span className={classes.divider}>|</span>
-          <NavLink to="/gameTwo" className={classes.action} >
-          {screenWidth.width > 800 ? 'GameTwo' : 'T'} 
+          <NavLink to="/frogger" className={classes.action} >
+          {screenWidth.width > 800 ? 'Frogger' : 'F'} 
           </NavLink>
           <span className={classes.divider}>|</span>
-          <NavLink to="/gameThree" className={classes.action} >
-          {screenWidth.width > 800 ? 'GameThree' : 'Th'}
+          <NavLink to="/find-a-word" className={classes.action} >
+          {screenWidth.width > 800 ? 'FindAWord' : 'F'}
           </NavLink>
         </div>
     </div>
