@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./WordColour.css";
 
 
+
 const WordColour = () => {
   const [colors, setColors] = useState([]);
   const [selectedColor, setSelectedColor] = useState("");
