@@ -1,10 +1,9 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home/Home';
-import WordColour from './pages/Home/WordColour/WordColour';
 import Frogger from './pages/Frogger/Frogger';
 import FindAWord from './pages/FindAWord/FindAWord';
-
+import WordColour from './pages/WordColour/WordColour'
 function App () {
   return (
     <>
