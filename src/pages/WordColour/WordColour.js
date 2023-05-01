@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from "react";
-import "./WordColour.css";
-
-
+import React, { useState, useEffect } from 'react';
+import './WordColour.css';
 
 const WordColour = () => {
   const [colors, setColors] = useState([]);
-  const [selectedColor, setSelectedColor] = useState("");
+  const [selectedColor, setSelectedColor] = useState('');
+  const [winTimes, setWinTimes] = useState(0);
   const [won, setWon] = useState(false);
 
   useEffect(() => {
@@ -15,17 +14,27 @@ const WordColour = () => {
   }, []);
 
   const startGame = () => {
-    const colorOptions = ["red", "blue", "orange", "yellow", "green", "purple", "pink"];
-    const selectedColor = colorOptions[Math.floor(Math.random() * colorOptions.length)];
+    const colorOptions = [
+      'red',
+      'blue',
+      'orange',
+      'yellow',
+      'green',
+      'purple',
+      'pink',
+    ];
+    const selectedColor =
+      colorOptions[Math.floor(Math.random() * colorOptions.length)];
     const randomColors = Array.from({ length: 4 }, () => getRandomColor());
-    randomColors[Math.floor(Math.random() * randomColors.length)] = selectedColor;
+    randomColors[Math.floor(Math.random() * randomColors.length)] =
+      selectedColor;
     setColors(randomColors);
     setSelectedColor(selectedColor);
   };
 
   const getRandomColor = () => {
-    const letters = "0123456789ABCDEF";
-    let color = "#";
+    const letters = '0123456789ABCDEF';
+    let color = '#';
     for (let i = 0; i < 6; i++) {
       color += letters[Math.floor(Math.random() * 16)];
     }
@@ -35,29 +44,46 @@ const WordColour = () => {
   const handleColorClick = (color) => {
     if (color === selectedColor) {
       if (colors.filter((c) => c === selectedColor).length === 1) {
+        console.log('Color Clicked True ');
         setWon(true);
-        alert("You have won!");
+        setWinTimes(winTimes + 1);
+        if (winTimes === 2) {
+          setWinTimes(0);
+          alert('You have won!');
+        }
         setWon(false);
         startGame();
       } else {
+        console.log('Color Clicked Wrong ');
         startGame();
       }
     }
   };
 
   return (
-    <div className="word-colour-container">
-      <div className="left-section">
-        <h1 style={{ color: selectedColor, fontSize: "2em", display: won ? "none" : "block" }}>
+    <div className='word-colour-container'>
+      <div className='left-section'>
+        <h1
+          style={{
+            color: selectedColor,
+            fontSize: '2em',
+            display: won ? 'none' : 'block',
+          }}
+        >
           {selectedColor.toUpperCase()}
         </h1>
       </div>
-      <div className="right-section">
+      <div className='right-section'>
         {colors.map((color, index) => (
           <div
             key={index}
-            className="color-box"
-            style={{ backgroundColor: color, display: won ? "none" : "block" }}
+            className='color-box'
+            style={{
+              backgroundColor: color,
+              display: won ? 'none' : 'block',
+              marginBottom: 10,
+              marginTop: 10,
+            }}
             onClick={() => handleColorClick(color)}
           />
         ))}
@@ -66,5 +92,4 @@ const WordColour = () => {
   );
 };
 
-
-export default WordColour
+export default WordColour;
