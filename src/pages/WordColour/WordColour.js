@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./WordColour.css";
+import "./WordColour.module.css";
 
 
 const WordColour = () => {
