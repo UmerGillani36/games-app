@@ -78,7 +78,12 @@ const WordColour = () => {
           <div
             key={index}
             className='color-box'
-            style={{ backgroundColor: color, display: won ? 'none' : 'block' }}
+            style={{
+              backgroundColor: color,
+              display: won ? 'none' : 'block',
+              marginBottom: 10,
+              marginTop: 10,
+            }}
             onClick={() => handleColorClick(color)}
           />
         ))}
