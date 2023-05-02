@@ -8,7 +8,7 @@ const Home = () => {
   const getScore = () => {
     const s = localStorage.getItem('score');
     if (s) {
-      if (JSON.parse(s).score === 0) {
+      if (JSON.parse(s).score <= 0) {
         alert('Congratulations!');
         localStorage.setItem('score', JSON.stringify({ score: 5 }));
         setScore(5);
