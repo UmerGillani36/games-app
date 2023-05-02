@@ -8,13 +8,19 @@ const Home = () => {
   const getScore = () => {
     const s = localStorage.getItem('score');
     if (s) {
-      if (JSON.parse(s).score === 0) {
+      if (JSON.parse(s).score <= 0) {
         alert('Congratulations!');
         localStorage.setItem('score', JSON.stringify({ score: 5 }));
         setScore(5);
       } else {
         setScore(JSON.parse(s).score);
       }
+    } else {
+      fetch('https://cgi.cse.unsw.edu.au/~cs6080/raw/data/score.json')
+        .then((response) => response.json())
+        .then((data) => {
+          setScore(data.score);
+        });
     }
   };
 

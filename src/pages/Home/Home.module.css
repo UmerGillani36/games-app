@@ -23,3 +23,10 @@
     color: red;
     font-size: 4em;
 }
+
+@media (max-width: 420px) {
+    .lineOne {
+        font-size: 1.2em;
+    }
+  }
+  
