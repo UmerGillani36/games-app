@@ -1,0 +1,42 @@
+/* Set font styles for the component */
+body {
+    font-family: Arial, sans-serif;
+  }
+  
+  h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  p {
+    font-size: 1.2rem;
+  }
+  
+  /* Style the table and cells */
+  table {
+    border-collapse: collapse;
+    margin-top: 2rem;
+  }
+  
+  td {
+    width: 2rem;
+    height: 2rem;
+    text-align: center;
+    border: 1px solid black;
+  }
+  
+  /* Highlight selected cells */
+  button.selected {
+    background-color: yellow;
+  }
+  
+  /* Style the found words list */
+  .found-words {
+    margin-top: 2rem;
+    font-size: 1.2rem;
+  }
+  
+  .found-words p {
+    margin-bottom: 0.5rem;
+  }
+  
