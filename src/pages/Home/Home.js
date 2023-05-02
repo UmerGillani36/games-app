@@ -15,6 +15,12 @@ const Home = () => {
       } else {
         setScore(JSON.parse(s).score);
       }
+    } else {
+      fetch('https://cgi.cse.unsw.edu.au/~cs6080/raw/data/score.json')
+        .then((response) => response.json())
+        .then((data) => {
+          setScore(data.score);
+        });
     }
   };
 
