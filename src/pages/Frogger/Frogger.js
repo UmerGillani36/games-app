@@ -102,8 +102,6 @@ const Frogger = () => {
       </div>
     </div>
   );
-  
-  
 };
 
 export default Frogger;
