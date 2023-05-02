@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './WordColour.css';
+import LeftSidebar from '../../components/LeftSidebar/LeftSidebar';
+import Footer from '../../components/Footer/Footer';
 
 const WordColour = () => {
   const [colors, setColors] = useState([]);
@@ -61,6 +63,8 @@ const WordColour = () => {
   };
 
   return (
+    <>
+    <LeftSidebar/>
     <div className='word-colour-container'>
       <div className='left-section'>
         <h1
@@ -89,6 +93,8 @@ const WordColour = () => {
         ))}
       </div>
     </div>
+    <Footer/>
+    </>
   );
 };
 
