@@ -10,7 +10,7 @@ const Home = () => {
     if (s) {
       if (JSON.parse(s).score === 0) {
         alert('Congratulations!');
-        localStorage.setItem('score', { score: 5 });
+        localStorage.setItem('score', JSON.stringify({ score: 5 }));
         setScore(5);
       } else {
         setScore(JSON.parse(s).score);
@@ -19,7 +19,7 @@ const Home = () => {
   };
 
   const handleReset = () => {
-    localStorage.setItem('score', { score: 5 });
+    localStorage.setItem('score', JSON.stringify({ score: 5 }));
     setScore(5);
   };
 

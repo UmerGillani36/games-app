@@ -52,6 +52,13 @@ const WordColour = () => {
         if (winTimes === 2) {
           setWinTimes(0);
           alert('You have won!');
+          const score = localStorage.getItem('score');
+          if (score) {
+            localStorage.setItem(
+              'score',
+              JSON.stringify({ score: JSON.parse(score).score - 1 })
+            );
+          }
         }
         setWon(false);
         startGame();
@@ -64,36 +71,36 @@ const WordColour = () => {
 
   return (
     <>
-    <LeftSidebar/>
-    <div className='word-colour-container'>
-      <div className='left-section'>
-        <h1
-          style={{
-            color: selectedColor,
-            fontSize: '2em',
-            display: won ? 'none' : 'block',
-          }}
-        >
-          {selectedColor.toUpperCase()}
-        </h1>
-      </div>
-      <div className='right-section'>
-        {colors.map((color, index) => (
-          <div
-            key={index}
-            className='color-box'
+      <LeftSidebar />
+      <div className='word-colour-container'>
+        <div className='left-section'>
+          <h1
             style={{
-              backgroundColor: color,
+              color: selectedColor,
+              fontSize: '2em',
               display: won ? 'none' : 'block',
-              marginBottom: 10,
-              marginTop: 10,
             }}
-            onClick={() => handleColorClick(color)}
-          />
-        ))}
+          >
+            {selectedColor.toUpperCase()}
+          </h1>
+        </div>
+        <div className='right-section'>
+          {colors.map((color, index) => (
+            <div
+              key={index}
+              className='color-box'
+              style={{
+                backgroundColor: color,
+                display: won ? 'none' : 'block',
+                marginBottom: 10,
+                marginTop: 10,
+              }}
+              onClick={() => handleColorClick(color)}
+            />
+          ))}
+        </div>
       </div>
-    </div>
-    <Footer/>
+      <Footer />
     </>
   );
 };
