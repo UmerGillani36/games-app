@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-
+import LeftSidebar from '../../components/LeftSidebar/LeftSidebar'
+import Footer from '../../components/Footer/Footer'
 const wordlist = [
 	{
 		words: ['feed','farm','eat','rat'],
@@ -60,15 +61,16 @@ const FindAWord = () => {
 
   return (
     <div>
-      {/* render the grid */}
+      <LeftSidebar/>
       <div
         style={{
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
+          display: 'grid',
+          gridTemplateColumns: 'repeat(4, 1fr)',
+          gridTemplateRows: 'repeat(4, 1fr)',
+          gap: '4px', 
           width: gridWidth,
-          height: gridWidth,
           margin: '0 auto',
+          marginTop:'100px'
         }}
       >
         {grid.map((row, rowIndex) =>
@@ -76,8 +78,8 @@ const FindAWord = () => {
             <div
               key={`${rowIndex}-${colIndex}`}
               style={{
-                width: cellWidth,
-                height: cellWidth,
+                width: '20px',
+                height: '20px',
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center',
@@ -97,7 +99,7 @@ const FindAWord = () => {
 
       {/* render the list of words */}
 {/* render the list of words */}
-<div style={{ width: 100, margin: '0 auto' }}>
+<div style={{ width: 100, margin: '80px auto' }}>
   {wordlist.map(({ words }, i) => (
     <div key={i}>
       {words.map((word, j) => (
@@ -109,7 +111,7 @@ const FindAWord = () => {
     </div>
   ))}
 </div>
-
+<Footer/>
     </div>
   );
 };
