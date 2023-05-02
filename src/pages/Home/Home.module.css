@@ -1,0 +1,25 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+    flex-direction: column;
+}
+
+.lineOne {
+    font-size: 2em;
+}
+
+.resetButton {
+    cursor: pointer;
+    color: cornflowerblue;
+}
+
+.resetButton:hover {
+    color: rgba(100, 148, 237, 0.700);
+}
+
+.lineTwo {
+    color: red;
+    font-size: 4em;
+}
