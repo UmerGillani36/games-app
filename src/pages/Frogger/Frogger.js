@@ -19,16 +19,19 @@ const Frogger = () => {
     const newGrid = [...grid];
     for (let row = 2; row <= 10; row += 3) {
       for (let col = 0; col < CAR_START_POS[0].length; col++) {
-        const carCol = CAR_START_POS[row / 3][col];
-        if (newGrid[row][carCol] === '🚗') {
-          newGrid[row][carCol] = '';
-          if (carCol === GRID_SIZE - 1) {
-            newGrid[row][0] = '🚗';
-          } else {
-            newGrid[row][carCol + 1] = '🚗';
+        const rowIdx = Math.floor(row / 3);
+        if (CAR_START_POS[rowIdx]) {
+          const carCol = CAR_START_POS[rowIdx][col];
+          if (newGrid[row][carCol] === '🚗') {
+            newGrid[row][carCol] = '';
+            if (carCol === GRID_SIZE - 1) {
+              newGrid[row][0] = '🚗';
+            } else {
+              newGrid[row][carCol + 1] = '🚗';
+            }
           }
         }
-      }
+      }      
     }
     setGrid(newGrid);
   };
@@ -88,7 +91,18 @@ const Frogger = () => {
       alert('You won!');
     }
   }, [frogPos]);
-
+  return (
+    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: `repeat(${GRID_SIZE}, ${CELL_SIZE}px)` }}>
+        {grid.map((row, rowIndex) => row.map((cell, colIndex) => (
+          <div key={`${rowIndex}-${colIndex}`} style={{ fontSize: CELL_SIZE }}>
+            {cell}
+          </div>
+        )))}
+      </div>
+    </div>
+  );
+  
   
 };
 
