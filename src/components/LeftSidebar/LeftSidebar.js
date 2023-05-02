@@ -5,7 +5,6 @@ import './LeftSidebar.css';
 function LeftSidebar() {
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-
   useEffect(() => {
     window.addEventListener('resize', () => {
       setWindowWidth(window.innerWidth);
@@ -22,10 +21,10 @@ function LeftSidebar() {
 
   return (
     <div className={`sidebar ${isSidebarCollapsed ? 'collapsed' : ''}`}>
-      <Link to="/home">Home</Link>
-      <Link to="/wordcolour">Word Colour</Link>
-      <Link to="/find-a-word">Find a word</Link>
-      <Link to="/frogger">Frogger</Link>
+      <Link to="/home">{windowWidth < 1400 ? 'H': 'Home'}</Link>
+      <Link to="/wordcolour">{windowWidth < 1400 ? 'W': 'Word Colour'}</Link>
+      <Link to="/find-a-word">{windowWidth < 1400 ? 'Fi': 'Find-a-word'}</Link>
+      <Link to="/frogger">{windowWidth < 1400 ? 'Fr': 'Frogger'}</Link>
       <div className="logo"></div>
     </div>
   );
