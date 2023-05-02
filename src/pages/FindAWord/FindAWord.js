@@ -1,63 +1,104 @@
-import React, { useState, useEffect } from "react";
-import ('./FindAWord.module.css');
+import React, { useState } from 'react';
 
-const FindAWord = ({ words, gridSize }) => {
-  const [grid, setGrid] = useState([]);
-  const [selectedWord, setSelectedWord] = useState("");
-  const [foundWords, setFoundWords] = useState([]);
+const wordlist = [
+	{
+		words: ['feed','farm','eat','rat'],
+		grid: [
+			[['F',[0,1] ],['E',[0]],['E',[0,2] ],['D',[0] ]],
+			[['A',[1] ],['Z',[]],['A',[2] ],['D',[] ]],
+			[['R',[1,3] ],['A',[3]],['T',[2,3] ],['D',[] ]],
+			[['M',[1] ],['G',[]],['R',[]],['D',[] ]],
+		]
+	},
+	{
+		words: ['monk','near','eel','more'],
+		grid: [
+			[['M',[0] ],['O',[0]],['N',[0,1]],['K',[0]]],
+			[['C',[] ],['E',[2]],['E',[1,2]],['L',[2]]],
+			[['B',[] ],['K',[]],['A',[1]],['L',[]]],
+			[['M',[3] ],['O',[3]],['R',[1,3]],['E',[3]]],
+		]
+	},
+	{
+		words: ['firm','ramp','damp'],
+		grid: [
+			[['F',[0] ],['I',[0]],['R',[0,1]],['M',[0]]],
+			[['B',[] ],['F',[]],['A',[1]],['O',[]]],
+			[['D',[2] ],['A',[2]],['M',[1,2]],['P',[2]]],
+			[['E',[] ],['R',[]],['P',[1]],['T',[]]],
+		]
+	}
+]
 
-  useEffect(() => {
-    const generateGrid = () => {
-      const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-      const grid = [];
+const gridWidth = 300;
+const cellWidth = 75;
 
-      for (let i = 0; i < gridSize; i++) {
-        const row = [];
-        for (let j = 0; j < gridSize; j++) {
-          const letter = letters[Math.floor(Math.random() * letters.length)];
-          row.push(letter);
-        }
-        grid.push(row);
-      }
+const FindAWord = () => {
+  // initialize the grid with the first set of data from the wordlist
+  const [grid, setGrid] = useState(wordlist[0].grid);
+  const [highlightedCells, setHighlightedCells] = useState(new Set());
 
-      setGrid(grid);
-    };
+  const handleCellClick = (row, col) => {
+    // do nothing if the cell has already been highlighted or there is no letter in the cell
+    if (highlightedCells.has(`${row}-${col}`) || !grid[row][col][0]) return;
 
-    generateGrid();
-  }, [gridSize]);
+    // add the cell to the set of highlighted cells
+    setHighlightedCells((prev) => new Set(prev).add(`${row}-${col}`));
+  };
 
-  const handleSelect = (rowIndex, colIndex) => {
-    const newSelectedWord = selectedWord + grid[rowIndex][colIndex];
-    setSelectedWord(newSelectedWord);
+  const handleCellDoubleClick = (row, col) => {
+    // do nothing if the cell has not been highlighted or there is no letter in the cell
+    if (!highlightedCells.has(`${row}-${col}`) || !grid[row][col][0]) return;
 
-    const wordFound = words.find((word) => word === newSelectedWord);
-
-    if (wordFound) {
-      setFoundWords([...foundWords, wordFound]);
-      setSelectedWord("");
-    }
+    // remove the cell from the set of highlighted cells
+    setHighlightedCells((prev) => {
+      const newHighlightedCells = new Set(prev);
+      newHighlightedCells.delete(`${row}-${col}`);
+      return newHighlightedCells;
+    });
   };
 
   return (
     <div>
-      <h2>Find-A-Word Game</h2>
-      <p>Select the words hidden in the grid:</p>
-      <p>Found words: {foundWords.join(", ")}</p>
-      <table>
-        <tbody>
-          {grid.map((row, rowIndex) => (
-            <tr key={rowIndex}>
-              {row.map((col, colIndex) => (
-                <td key={`${rowIndex}-${colIndex}`}>
-                  <button onClick={() => handleSelect(rowIndex, colIndex)}>
-                    {col}
-                  </button>
-                </td>
-              ))}
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      {/* render the grid */}
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          width: gridWidth,
+          height: gridWidth,
+          margin: '0 auto',
+        }}
+      >
+        {grid.map((row, rowIndex) =>
+          row.map(([letter, words], colIndex) => (
+            <div
+              key={`${rowIndex}-${colIndex}`}
+              style={{
+                width: cellWidth,
+                height: cellWidth,
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                backgroundColor: highlightedCells.has(`${rowIndex}-${colIndex}`)
+                  ? 'rgb(255, 255, 200)'
+                  : '#ccc',
+                cursor: 'pointer',
+              }}
+              onClick={() => handleCellClick(rowIndex, colIndex)}
+              onDoubleClick={() => handleCellDoubleClick(rowIndex, colIndex)}
+            >
+              <span style={{ fontWeight: 'bold' }}>{letter}</span>
+            </div>
+          ))
+        )}
+      </div>
+
+      {/* render the list of words */}
+      <div style={{ width: 100, margin: '0 auto' }}>
+        {/* TODO: render the list of words */}
+      </div>
     </div>
   );
 };
