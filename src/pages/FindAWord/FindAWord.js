@@ -96,9 +96,20 @@ const FindAWord = () => {
       </div>
 
       {/* render the list of words */}
-      <div style={{ width: 100, margin: '0 auto' }}>
-        {/* TODO: render the list of words */}
-      </div>
+{/* render the list of words */}
+<div style={{ width: 100, margin: '0 auto' }}>
+  {wordlist.map(({ words }, i) => (
+    <div key={i}>
+      {words.map((word, j) => (
+        <React.Fragment key={j}>
+          <span>{word}</span>
+          {j % 4 === 3 && <br />} {/* add a line break after every 4th word */}
+        </React.Fragment>
+      ))}
+    </div>
+  ))}
+</div>
+
     </div>
   );
 };
